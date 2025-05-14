@@ -9,11 +9,11 @@
 # Ignore tests-out folder
 tests-out/
 
-# Ignore .txt files
+# Ignore .txt files (except for CMakeLists.txt
 *.txt
+!CMakeLists.txt
 
-# Ignore CMake files
-CMakeLists.txt
+# Ignore CMake debug directory
 cmake-build-debug/
 
 ###################################
