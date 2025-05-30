@@ -3,6 +3,11 @@
 !*.*
 !*/
 !Makefile
+!pre
+
+# Ignore test files for xv6
+*/src/Makefile.test
+*/src/test*.c
 
 # Ignore .idea folder
 .idea/
@@ -52,6 +57,7 @@ cmake-build-debug/
 # Executables
 *.exe
 *.out
+!*/tests/*.out
 *.app
 *.i*86
 *.x86_64
@@ -71,4 +77,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-

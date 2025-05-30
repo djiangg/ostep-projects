@@ -314,6 +314,9 @@ sys_open(void)
     }
   }
 
+  if(tracer_enabled())
+    update_tracer(path);
+
   if((f = filealloc()) == 0 || (fd = fdalloc(f)) < 0){
     if(f)
       fileclose(f);
@@ -374,7 +377,7 @@ sys_chdir(void)
   char *path;
   struct inode *ip;
   struct proc *curproc = myproc();
-  
+
   begin_op();
   if(argstr(0, &path) < 0 || (ip = namei(path)) == 0){
     end_op();
@@ -441,4 +444,20 @@ sys_pipe(void)
   fd[0] = fd0;
   fd[1] = fd1;
   return 0;
+}
+
+int
+sys_trace(void)
+{
+  char *path;
+  if(argstr(0, &path) < 0 || path == 0)
+    return -1;
+  enable_tracer(path);
+  return 0;
+}
+
+int
+sys_getcount(void)
+{
+  return get_tracecount();
 }

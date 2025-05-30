@@ -186,5 +186,12 @@ void            switchkvm(void);
 int             copyout(pde_t*, uint, void*, uint);
 void            clearpteu(pde_t *pgdir, char *uva);
 
+// tracer.c
+void            tracerinit(void);
+int             get_tracecount(void);
+int             tracer_enabled(void);
+void            enable_tracer(const char *pathname);
+void            update_tracer(const char *pathname);
+
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
