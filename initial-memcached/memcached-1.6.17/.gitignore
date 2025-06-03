@@ -1,0 +1,12 @@
+!*
+*.Po
+*.o
+*.gcno
+config*
+Makefile
+memcached
+memcached-debug
+sizes
+stamp-h1
+testapp
+timedrun
