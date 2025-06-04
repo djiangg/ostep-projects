@@ -889,7 +889,7 @@ void item_unlink(item *item) {
  * Does arithmetic on a numeric item value.
  */
 enum delta_result_type add_delta(conn *c, const char *key,
-                                 const size_t nkey, bool incr,
+                                 const size_t nkey, int op,
                                  const int64_t delta, char *buf,
                                  uint64_t *cas) {
     enum delta_result_type ret;
@@ -897,7 +897,7 @@ enum delta_result_type add_delta(conn *c, const char *key,
 
     hv = hash(key, nkey);
     item_lock(hv);
-    ret = do_add_delta(c, key, nkey, incr, delta, buf, cas, hv, NULL);
+    ret = do_add_delta(c, key, nkey, op, delta, buf, cas, hv, NULL);
     item_unlock(hv);
     return ret;
 }
@@ -1094,4 +1094,3 @@ void memcached_thread_init(int nthreads, void *arg) {
     wait_for_thread_registration(nthreads);
     pthread_mutex_unlock(&init_lock);
 }
-
